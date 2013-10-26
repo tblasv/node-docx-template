@@ -1,0 +1,22 @@
+{
+  "name": "node-docx-template",
+  "version": "0.0.1",
+  "description": "Generate docx documents from docx template",
+  "main": "docxTemplate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tblasv/node-docx-template"
+  },
+  "keywords": [
+    "docx-template",
+    "docx"
+  ],
+  "author": "tblasv",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tblasv/node-docx-template/issues"
+  },
+  "dependencies": {
+    "node-zip": "~1.0.1"
+  }
+}

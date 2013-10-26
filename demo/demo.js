@@ -1,5 +1,5 @@
 var docxTemplate = require('../docxTemplate');
-var fs = require('fs');
+    fs = require('fs');
 
 var templateData1 = {
     Title: 'Sync Test',
@@ -16,23 +16,23 @@ var templateData2 = {
     year: '2013'
 };
 
-var template = docxTemplate.compileFileSync('demo/template.docx');
+/* async */
+docxTemplate.render('demo/template.docx', templateData1, 'demo/file1_gen.docx', function(err) {
+    console.log('on complete');
+});
+
+/* sync */
+docxTemplate.renderSync('demo/template.docx', templateData2, 'demo/file2_gen.docx');
+
+
+var template = docxTemplate.compileFileSync('demo/template.docx'), // docxTemplate.compile(/* data [,opt] *!/)
+    docxFile = template(templateData1); // render
+
 
 /* async */
-docxTemplate.compileFile('demo/template.docx', {openTag: '{', closeTag: '}'}, function(err, aTemplate){
+docxTemplate.compileFile('demo/template.docx', function(err, aTemplate){
     if(err) return console.log(err);
-    fs.writeFile('demo/file2_gen.docx', aTemplate(templateData2), { encoding: 'binary' }, function(err){
+    fs.writeFile('demo/file3_gen.docx', aTemplate(templateData2), { encoding: 'binary' }, function(err){
         if(err) console.log(err);
     });
 });
-
-/* async */
-docxTemplate.renderToFile('demo/file1_gen.docx', template, templateData1);
-
-
-/* or manual
-
-var mTemplate = docxTemplate.compile(/* data [,opt] *!/)
-var docxFile = mTemplate(templateData1); // render
-...
-*/
